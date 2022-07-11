@@ -1,8 +1,8 @@
 <?php
     define('DB_USER', 'root');
-    define('DB_PASS', '');
+    define('DB_PASS', 'root');
     define('DB_HOST', 'localhost');
-    define('DB_NAME', 'ingrwf10_php');
+    define('DB_NAME', 'FORUM_WTF10');
 
     define('MODE', 'dev'); // dev or prod
 
@@ -16,4 +16,4 @@
 
 require_once 'functions.php';
 
-//myPrint_r($connect);
+myPrint_r($connect);

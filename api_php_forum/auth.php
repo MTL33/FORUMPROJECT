@@ -18,11 +18,11 @@ if( isset($_POST['ident'])) :
     if( $result->num_rows > 0 ) :
         $user = $result -> fetch_assoc();
         session_start();
-        $_SESSION['user'] = $user['id_users'];
+        $_SESSION['user'] = $user['id_user'];
         $_SESSION['token'] = md5($user['login'].time());
-        header("location:secure.php");
+        //echo 'le login a fonctionné';
+        header("location:topiclist.php");
         exit;
-        //myPrint_r($_SESSION);
     else:
         echo 'erreur de log et pass';
     endif;

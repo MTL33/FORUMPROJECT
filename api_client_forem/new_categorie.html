@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajouter une catégorie de produit</title>
+</head>
+<body>
+  <h1>Ajouter une catégorie de produit :</h1>
+  <form action="" class="addcat">
+    <input type="text" placeholder="Nom de la catégorie à ajouter" class="label" id="labelCat">
+    <input type="submit" value="ajouter">
+  </form>
+  <script>
+    const urlApi = 'http://localhost/api_php-supra/'
+    const formAddCat = document.querySelector('.addcat')
+    const fieldLabel = document.querySelector('.label')
+    formAddCat.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(urlApi + 'categories', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          label: formAddCat.querySelector('.label').value,
+          token: localStorage.token
+        })
+      })
+      .then(response => response.json())
+      .then(response => {
+          console.log(response)
+          switch (response.code){
+            case 401:
+              window.location.href = 'connexion.html'
+              break;
+              case 200:
+                alert('categorie ajoutée')
+          }
+          fieldLabel.value = ""
+        })
+      .catch(error => console.log(error))
+    })
+  </script>
+</body>
+</html>
+
